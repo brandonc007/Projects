@@ -1,0 +1,6 @@
+C 1 O 2
+C 3 H 8
+Na 1 Cl 1
+C 2 H 6 O 1
+H 2 S 1 O 4
+Al 2 O 3
