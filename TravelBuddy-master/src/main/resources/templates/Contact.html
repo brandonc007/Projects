@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/styles.css">
+    <style>
+	
+	
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+			background-color: rgba(255, 255, 255, 0.8); /* Background color with opacity */
+			background-image: url('../static/img/contactBackground.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.5); /* Caption background color */
+			border-radius: 10px; /* Rounded corners for the caption */
+			margin-top: 100px;
+			padding: 40px;
+			top: 30px;
+			bottom: 0;
+			width: 90%;
+			opacity: 95%;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        textarea {
+            background-color: rgba(0, 0, 0, 0.5); /* Caption background color */
+			border-radius: 10px; /* Rounded corners for the caption */
+			padding: 10px;
+			bottom: 0;
+			opacity: 90%;
+			width: 100%;
+        }
+        input[type="submit"] {
+            background-color: #F7941D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #f38604;
+        }
+		.navbar-brand {
+    font-size: 24px;
+    color: white;
+    text-decoration: bold;
+	
+    </style>
+	
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" onclick="location.href='../../../../index.html'" href="#TravelBuddy">TravelBuddy
+        <img src="../static/img/travelBuddy.png" alt="Travel Buddy Logo" height="50" class="mr-2">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          <a class="nav-link" onclick = "location.href='../../../../index.html'">Home</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" onclick = "location.href='destinations.html'">Destinations</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" onclick = "location.href='about.html'">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick = "location.href='random.html'">Random</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" onclick = "location.href='Contact.html'">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+    <div class="container">
+        <h2 style="color: white;">Contact Us</h2>
+        <form action="#" method="post">
+            <label for="name" style="color: white;">Name:</label>
+            <input type="text" id="name" name="name" style="color: white" placeholder="Your Name" required>
+            <label for="email" style="color: white;">Email:</label>
+            <input type="text" id="email" name="email" style="color: white" placeholder="Your Email" required>
+            <label for="notes" style="color: white;">Notes:</label>
+            <textarea id="notes" name="notes" style="color: white" placeholder="Your Message" required></textarea>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

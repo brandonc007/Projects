@@ -1,0 +1,58 @@
+.navbar {
+  background-color: #007bff; /* Navbar background color */
+}
+
+.navbar-brand {
+  font-size: 1.5rem; /* Brand name font size */
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff; /* Navbar link color */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #f8f9fa; /* Navbar link color on hover */
+}
+
+/* Featured Destinations Carousel */
+#destinationCarousel {
+  margin-top: 20px;
+}
+
+.carousel-item {
+  text-align: center;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5); /* Caption background color */
+  border-radius: 10px; /* Rounded corners for the caption */
+  padding: 10px;
+  bottom: 0;
+  opacity: 90%;
+}
+
+.carousel-caption h5 {
+  color: #ffffff; /* Caption title color */
+  font-size: 2rem;
+}
+
+.carousel-caption p {
+  color: #ffffff; /* Caption text color */
+  font-size: 1.2rem;
+}
+
+/* Media Queries */
+@media (max-width: 576px) {
+  .navbar-brand {
+    .navbar-brand {
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    font-weight: bold; /* Optional: Adjust the font weight */
+    text-decoration: none; /* Optional: Remove underline */
+    color: #fff; /* Optional: Set the text color */
+}
+  }
+}
+
+.picright{
+	float :left;
+}

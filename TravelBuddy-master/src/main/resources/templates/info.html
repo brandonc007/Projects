@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Information</title>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="styles" href="/styles.css">
+	
+	
+    <style>
+        body {
+          
+		   font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black; /* Background color with opacity */ 
+            background-size: contain;
+            background-position: center;
+			background-repeat: no-repeat;
+			background-size: 150%;
+        }
+        .container {
+			margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+			background-color: rgba(0, 0, 0, 0.8); /* Caption background color */
+			opacity: 95%;
+        }
+        .content {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .heading {
+            font-size: 40px;
+			font-color: white;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .blurb {
+            font-size: 20px;
+			font-color: white;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .link {
+            display: block;
+			font-size: 20px;
+            color: blue;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        .image-container {
+            flex: 1;
+            text-align: center;
+        }
+        .image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+		.back-button-container {
+            margin-top: 20px; /* Adjust margin to create space below navbar */
+            margin-left: 20px; /* Adjust margin to create space on the left */
+        }
+        .back-button {
+            font-size: 16px;
+        }
+    </style>
+	
+	
+	
+	
+</head>
+
+<body>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" onclick="location.href='../../../../index.html'" href="#TravelBuddy">TravelBuddy
+        <img src="../static/img/travelBuddy.png" alt="Travel Buddy Logo" height="50" class="mr-2">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          <a class="nav-link" onclick = "location.href='../../../../index.html'">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" onclick = "location.href='destinations.html'">Destinations</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" onclick = "location.href='about.html'">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick = "location.href='random.html'">Random</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick = "location.href='Contact.html'">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+
+        function parseUrlParameter(parameterName) {
+        var result = null,
+            tmp = [];
+        location.search
+            .substr(1)
+            .split("&")
+            .forEach(function (item) {
+              tmp = item.split("=");
+              if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+            });
+        return result;
+    }
+
+    const destinations = {
+        'Paris': {
+            title: "Welcome to Paris, France",
+            description: "Paris, France, often referred to as 'The City of Light,' is celebrated for its breathtaking architecture, including iconic landmarks such as the Eiffel Tower, Notre-Dame Cathedral, and the Arc de Triomphe. The city exudes romance and elegance, famed for its world-class art museums like the Louvre and the Musée d'Orsay, which house some of the most important art collections in the world. Paris is also synonymous with fashion and gastronomy, offering an array of chic boutiques and exquisite cafes and restaurants that line its charming streets and picturesque riverbanks.",
+            imageUrl: '../static/img/parisFeature.jpeg',
+            mapUrl:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d167999.2480460572!2d2.035214669299014!3d48.85843443623336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis%2C%20France!5e0!3m2!1sen!2sus!4v1713466735530!5m2!1sen!2sus'
+			},
+		
+        'Rome': {
+            title: "Welcome to Rome, Italy",
+            description: "Rome, Italy, known as the 'Eternal City,' is steeped in history, housing ancient ruins like the Colosseum and the Roman Forum that echo the grandeur of the Roman Empire. It's a city where art and history intertwine, showcased in the Vatican Museums and the Sistine Chapel, renowned for Michelangelo's breathtaking frescoes. Rome's charm is also found in its lively piazzas, narrow cobblestone streets, and the daily life that pulses amidst its extraordinary heritage.",
+            imageUrl: '../static/img/Rome_background.jpeg',
+            mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d190028.3558896821!2d12.370848262342339!3d41.9102083003771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6196f9928ebb%3A0xb90f770693656e38!2sRome%2C%20Metropolitan%20City%20of%20Rome%20Capital%2C%20Italy!5e0!3m2!1sen!2sus!4v1713482978040!5m2!1sen!2sus'
+        },
+		
+		'Tokyo': {
+            title: "Welcome to Tokyo, Japan",
+            description: " Tokyo, Japan, is a vibrant metropolis that blends traditional culture with cutting-edge technology, exemplified by its historic temples sitting alongside towering skyscrapers. Known for its bustling streets, the city offers a plethora of culinary delights, from Michelin-starred restaurants to local street food stalls. Tokyo also serves as a cultural hub, featuring a variety of museums, theaters, and fashion districts that highlight both its rich history and its contemporary artistic expressions.",
+            imageUrl: '../static/img/Tokyo_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d831443.6965128168!2d139.10906083155407!3d35.508557257605474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x605d1b87f02e57e7%3A0x2e01618b22571b89!2sTokyo%2C%20Japan!5e0!3m2!1sen!2sus!4v1713483072447!5m2!1sen!2sus"
+        },
+		
+		'Newyork': {
+            title: "Welcome to New York City , New York",
+            description: "New York City, often called 'The Big Apple,' is a bustling metropolis known for its iconic skyline, highlighted by landmarks such as the Empire State Building and the Statue of Liberty. It's a global hub of finance, culture, and entertainment, with Broadway theaters, world-class museums like the Metropolitan Museum of Art, and diverse neighborhoods from Chinatown to Harlem. The city thrives on its energetic pace and constant change, making it a vibrant tapestry of cultures and experiences.",
+            imageUrl: '../static/img/Newyork_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d169990.8002850694!2d-74.14755057494352!3d40.701643881808046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1713483512530!5m2!1sen!2sus"
+        },
+		
+		'London': {
+            title: "Welcome to London, United Kingdom",
+            description: "London, the capital city of the United Kingdom, is rich in history and culture, epitomized by its iconic landmarks such as Buckingham Palace, the Tower of London, and the British Museum. It is a global financial center and melting pot of cultures, reflected in its diverse food scene, bustling markets like Camden and Borough, and numerous festivals. London's charm also lies in its green spaces like Hyde Park and along the winding River Thames, which offers scenic views and a pathway through the city's historic and modern landscapes.",
+            imageUrl: '../static/img/London_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158857.84156675608!2d-0.26674651371927494!3d51.52873932353783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2sus!4v1713489975593!5m2!1sen!2sus" 
+        },
+		
+		'Losangeles': {
+            title: "Welcome to Los Angeles, California",
+            description: "Los Angeles, California, is a sprawling metropolis known for its entertainment industry, epitomized by Hollywood and its influence on global film and television. The city boasts a diverse cultural scene, from world-class museums like the Getty Center to vibrant music and food scenes reflecting its multicultural population. Los Angeles also offers a unique blend of urban energy and natural beauty, with expansive beaches, hiking trails in the Santa Monica Mountains, and stunning coastal sunsets.",
+            imageUrl: '../static/img/Losangeles_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423284.6897532054!2d-118.41173249999999!3d34.020479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA!5e0!3m2!1sen!2sus!4v1713484304270!5m2!1sen!2sus" 
+        },
+		
+		'Kyoto': {
+            title: "Welcome to Kyoto, Japan",
+            description: "Kyoto, Japan, is celebrated for its extraordinary preservation of ancient traditions, visible in over a thousand temples and shrines, including the famous Fushimi Inari Shrine and Kinkaku-ji, the Golden Pavilion. This city was the imperial capital for over a millennium, fostering a unique cultural heritage that thrives in its tea ceremonies, festivals, and intricate kimonos. Surrounded by scenic mountains, Kyoto is also renowned for its breathtaking seasonal changes, especially the cherry blossoms in spring and vibrant autumn leaves, which draw visitors from around the world.",
+            imageUrl: '../static/img/Kyoto_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d208917.82113721708!2d135.7188694!3d35.09819619999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6001a8d6cd3cc3f1%3A0xc0961d366bbb1d3d!2sKyoto%2C%20Japan!5e0!3m2!1sen!2sus!4v1713488722049!5m2!1sen!2sus"
+        },
+		
+		'Sydney': {
+            title: "Welcome to Sydney, Australia",
+            description: "Sydney, Australia, is known for its stunning harbor, home to the iconic Sydney Opera House and Harbour Bridge, landmarks that define its skyline. This vibrant city offers a mix of outdoor activities, arts, and cultural events, appealing to both nature lovers and urban explorers. Sydney's beaches, including the world-famous Bondi Beach, provide a perfect setting for relaxation and water sports, making it a quintessential example of Australia’s laid-back lifestyle and scenic beauty.",
+            imageUrl: '../static/img/Sydney_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d424141.6978944982!2d150.93197474999997!3d-33.84824395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney%20NSW%2C%20Australia!5e0!3m2!1sen!2sus!4v1713488778098!5m2!1sen!2sus"
+        },
+		
+		'Istanbul': {
+            title: "Welcome to Istanbul, Turkey",
+            description: "Istanbul, Turkey, straddles Europe and Asia across the Bosphorus Strait, embodying a vibrant blend of cultures and a rich history visible in its architecture and traditions. The city is renowned for its historic sites, including the majestic Hagia Sophia and the opulent Topkapi Palace, which reflect its past as the center of the Byzantine and Ottoman Empires. Istanbul's bustling bazaars, such as the Grand Bazaar, offer a sensory overload of sights, sounds, and smells, showcasing an array of goods from spices and textiles to intricate jewelry.",
+            imageUrl: '../static/img/Istanbul_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d385396.6059676668!2d29.01217945!3d41.0053215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2zxLBzdGFuYnVsLCBUw7xya2l5ZQ!5e0!3m2!1sen!2sus!4v1713488819459!5m2!1sen!2sus"
+        },
+		
+		'Riodejaneiro': {
+            title: "Welcome to Rio de Janeiro, Brazil",
+            description: "Rio de Janeiro, Brazil, is famously set against a backdrop of dramatic green mountains, blue sea, and sandy beaches, including the world-renowned Copacabana and Ipanema. Known for its laid-back beach culture and the exuberant Carnival festival, which features parade floats, flamboyant costumes, and samba music, Rio embodies a vibrant, festive spirit. The city is also famous for its iconic Christ the Redeemer statue, perched atop Corcovado mountain, offering panoramic views of the city and its surroundings.",
+            imageUrl: '../static/img/Rio_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d470397.3628527395!2d-43.44598205!3d-22.91413075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bde559108a05b%3A0x50dc426c672fd24e!2sRio%20de%20Janeiro%2C%20State%20of%20Rio%20de%20Janeiro%2C%20Brazil!5e0!3m2!1sen!2sus!4v1713488865381!5m2!1sen!2sus"
+        },
+		
+		'Amsterdam': {
+            title: "Welcome to Amsterdam, Netherlands",
+            description: "Amsterdam, Netherlands, is renowned for its elaborate canal system, narrow houses with gabled facades, and a rich history in art, notably housing masterpieces by Rembrandt and Van Gogh in its world-class museums. The city embodies a liberal culture, evident in its progressive policies and a vibrant nightlife, including the historic Red Light District. Amsterdam is also known for its cycling culture, with numerous bike paths and bike-friendly laws, making bicycles a preferred mode of transportation among locals and tourists alike.",
+            imageUrl: '../static/img/Amsterdam_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155959.60018826099!2d4.9039604!3d52.354665649999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c63fb5949a7755%3A0x6600fd4cb7c0af8d!2sAmsterdam%2C%20Netherlands!5e0!3m2!1sen!2sus!4v1713488915514!5m2!1sen!2sus"
+        },
+		
+		'Bangkok': {
+            title: "Welcome to Bangkok, Thailand",
+            description: "Bangkok, Thailand, is a bustling metropolis known for its vibrant street life and cultural landmarks, such as the opulent Grand Palace and the sacred Wat Arun and Wat Pho temples. The city is a culinary paradise, offering a vast array of eating options from street food stalls in bustling markets to upscale restaurants. Bangkok also serves as a gateway to exploring Thailand, with its lively nightlife, bustling markets, and a network of rivers and canals that provide a unique perspective of daily life in the city.",
+            imageUrl: '../static/img/Bangkok_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496114.99735159066!2d100.63311079999998!3d13.724599549999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d6032280d61f3%3A0x10100b25de24820!2sBangkok%2C%20Thailand!5e0!3m2!1sen!2sus!4v1713488966129!5m2!1sen!2sus"
+        },
+		
+		'Cairo': {
+            title: "Welcome to Cairo, Egypt",
+            description: "Cairo, Egypt, is steeped in millennia of history, dominated by incredible ancient monuments like the nearby Pyramids of Giza and the Sphinx, standing as testaments to its rich and complex past. This sprawling metropolis is a vibrant blend of old and new, where medieval markets like Khan el-Khalili coexist with modern skyscrapers and bustling streets. Cairo is also the cultural heart of Egypt, home to some of the world’s most important Islamic, Coptic, and Pharaonic relics, making it a treasure trove for historians and travelers alike.",
+            imageUrl: '../static/img/Cairo_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55251.37451031098!2d31.258464350000004!3d30.059488450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Cairo%20Governorate%2C%20Egypt!5e0!3m2!1sen!2sus!4v1713489001984!5m2!1sen!2sus"
+        },
+		
+		'Barcelona': {
+            title: "Welcome to Barcelona, Spain",
+            description: "Barcelona, Spain, is celebrated for its architectural wonders, most notably the fantastical Sagrada Família and other modernist landmarks designed by Antoni Gaudí, which dot the cityscape. This vibrant coastal city on the Mediterranean is known for its lively tapas bars, bustling markets like La Boqueria, and vibrant street life that embody its dynamic culture. Barcelona's blend of Gothic and modernist architecture, along with its rich artistic heritage and beautiful beaches, makes it a captivating destination for visitors from around the world.",
+            imageUrl: '../static/img/Barcelona_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95780.6243159463!2d2.1401890999999997!3d41.392667949999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a49816718e30e5%3A0x44b0fb3d4f47660a!2sBarcelona%2C%20Spain!5e0!3m2!1sen!2sus!4v1713489046298!5m2!1sen!2sus"
+        },
+		'Dubai': {
+            title: "Welcome to Dubai, United Arab Emirates",
+            description: "Dubai, United Arab Emirates, is a city of superlatives, known for its futuristic architecture including the towering Burj Khalifa, the tallest building in the world, and the luxurious Burj Al Arab hotel. This cosmopolitan city is a hub of business and tourism, drawing visitors with its extravagant shopping centers, like the vast Dubai Mall, and artificial islands such as the Palm Jumeirah. Dubai also offers a unique blend of desert landscapes and lush golf courses, showcasing a striking contrast between its modern urbanity and traditional desert culture.",
+            imageUrl: '../static/img/Dubai_background.jpeg',
+            mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462561.6574537445!2d55.22748795!3d25.076022449999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sus!4v1713489085041!5m2!1sen!2sus"
+        },
+		
+
+    };
+
+    const destinationKey = parseUrlParameter('destination');
+    if (destinationKey && destinations[destinationKey]) {
+        const dest = destinations[destinationKey];
+        document.getElementById('main-title').textContent = dest.title;
+        document.getElementById('description').textContent = dest.description;
+		document.body.style.backgroundImage = `url('${dest.imageUrl}`;
+        document.getElementById('main-title').style.color = 'white';
+        document.getElementById('description').style.color = 'white';
+        document.getElementById('map-container').getElementsByTagName('iframe')[0].src = dest.mapUrl;
+    }
+	
+
+});
+
+
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="heading" id="main-title">Dynamic City Title</h1>
+            <p class="blurb" id="description">Dynamic city description goes here.</p>
+            <a href="#" id="more-info-link" class="link">Learn more about our destination!</a>
+        </div>
+        <div class="col-md-6">
+            <div id="map-container">
+                <iframe id="city-map" width="500" height="400" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+	
+</body>
+</html>

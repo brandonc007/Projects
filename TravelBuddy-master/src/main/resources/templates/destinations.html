@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Destinations</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .destination {
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            float: left;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .destination img {
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        .destination h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .destination p {
+            font-size: 1rem;
+            color: #555;
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+        }
+        .filter-container {
+            display: none; /* Initially hide the filter container */
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .filter-container h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .go-button {
+            background-color: #F7941D; /* Button color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            width: 100%; /* Button spans entire width */
+        }
+        .go-button:hover {
+            background-color: #f38604;
+        }
+        /* Ensure Filter Button stays in position */
+        .filter-button-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .filter-button {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%; /* Button spans entire width */
+            background-color: #F7941D; /* Button color */
+        }
+		.filter-button:hover {
+			background-color: #f38604;
+		}
+/* Override Bootstrap's focus and active states */
+.filter-button:focus,
+.filter-button:active {
+    background-color: #F7941D;
+    box-shadow: none;
+    outline: none;
+}
+        .search-container {
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        .search-container input[type=text] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            color: white;
+            text-decoration: bold;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" onclick="location.href='../../../../index.html'" href="#TravelBuddy">TravelBuddy
+        <img src="../static/img/travelBuddy.png" alt="Travel Buddy Logo" height="50" class="mr-2">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          <a class="nav-link" onclick = "location.href='../../../../index.html'">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" onclick = "location.href='destinations.html'">Destinations</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" onclick = "location.href='about.html'">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick = "location.href='random.html'">Random</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick = "location.href='Contact.html'">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+<!-- Container for Filter Button, Search Field -->
+<div class="container-fluid bg-light">
+    <div class="row justify-content-center align-items-center py-3">
+        <div class="col-md-12 filter-button-container">
+            <button id="filterButton" class="btn btn-primary filter-button">Filter Destinations</button>
+        </div>
+        <div class="col-md-12 search-container">
+            <input type="text" id="searchInput" placeholder="Search for a destination...">
+        </div>
+    </div>
+</div>
+
+<!-- Filter Container -->
+<div id="filterContainer" class="filter-container" style="display: block;">
+    <h3>Filter Destinations</h3>
+    <div>
+        <label for="category">Category:</label>
+        <select id="category">
+            <option value="">All</option>
+            <option value="City">City</option>
+            <option value="Scenery">Scenery</option>
+			<option value="Beach">Beach</option>
+        </select>
+    </div>
+    <div>
+        <label for="continent">Continent:</label>
+        <select id="continent">
+            <option value="">All</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
+			<option value="Asia">Asia</option>
+			<option value="South America">South America</option>
+			<option value="Australia">Australia</option>
+			<option value="Africa">Africa</option>
+        </select>
+
+    <!-- Go Button -->
+    <div class="text-center">
+        <button id="goButton" class="go-button">Go</button>
+    </div>
+</div>
+
+<a href="info.html?destination=Paris" class="destination-link">
+    <div class="destination" data-continent="Europe" data-category="City" assigned-num="1">
+    <img src="../static/img/Paris.jpeg" class="d-block w-200" alt="Paris">
+    <h2>Paris, France</h2>
+    <p>The City of Light, known for its iconic landmarks such as the Eiffel Tower and Louvre Museum.</p>
+</div>
+</a>
+
+<a href="info.html?destination=Rome"  class="destination-link">
+    <div class="destination" data-continent="Europe" data-category="City" data-rating="">
+    <img  src="../static/img/Rome.jpeg" alt="Rome">
+    <h2>Rome, Italy</h2>
+    <p>The Eternal City, famous for its ancient ruins like the Colosseum and the Roman Forum.</p>
+</div>
+
+<a href="info.html?destination=Tokyo" class="destination-link">
+    <div class="destination" data-continent="Asia" data-category="City" data-rating="">
+    <img src="../static/img/tokyo.jpeg" alt="Tokyo">
+    <h2>Tokyo, Japan</h2>
+    <p>A bustling metropolis blending modernity with traditional culture, offering attractions like the Senso-ji Temple and Tokyo Tower.</p>
+</div>
+
+<a href="info.html?destination=Newyork" class="destination-link">
+    <div class="destination" data-continent="North America" data-category="City" data-rating="">
+    <img src="../static/img/Nyc.jpeg" alt="New York City">
+    <h2>New York City, USA</h2>
+    <p>The Big Apple, known for its skyscrapers, Broadway shows, and landmarks like the Statue of Liberty and Central Park.</p>
+</div>
+
+<a href="info.html?destination=London" class="destination-link">
+    <div class="destination" data-continent="Europe" data-category="City" data-rating="">
+    <img src="../static/img/London.jpeg" alt="London">
+    <h2>London, England</h2>
+    <p>The capital of the UK, renowned for its history, culture, and landmarks including the Tower of London and Buckingham Palace.</p>
+</div>
+
+<a href="info.html?destination=Losangeles" class="destination-link">
+    <div class="destination" data-continent="North America" data-category="Beach" data-rating="">
+    <img src="../static/img/LosAngeles.jpeg" alt="Los Angeles">
+    <h2>Los Angeles, USA</h2>
+    <p>Entertainment capital with sunny weather and diverse neighborhoods.</p>
+</div>
+
+<a href="info.html?destination=Kyoto" class="destination-link">
+    <div class="destination" data-continent="Asia" data-category="Scenery" data-rating="">
+    <img src="../static/img/kyoto.jpeg" alt="Kyoto">
+    <h2>Kyoto, Japan</h2>
+    <p>An ancient city in Japan, known for its numerous temples, traditional tea houses, and beautiful gardens.</p>
+</div>
+
+<a href="info.html?destination=Sydney" class="destination-link">
+    <div class="destination" data-continent="Australia" data-category="Beach" data-rating="">
+    <img src="../static/img/sydney.jpeg" alt="Sydney">
+    <h2>Sydney, Australia</h2>
+    <p>A vibrant city with iconic landmarks such as the Sydney Opera House and Sydney Harbour Bridge, along with beautiful beaches like Bondi Beach.</p>
+</div>
+
+<a href="info.html?destination=Istanbul" class="destination-link">
+    <div class="destination" data-continent="Asia" data-category="Scenery" data-rating="">
+    <img src="../static/img/istanbul.jpeg" alt="Istanbul">
+    <h2>Istanbul, Turkey</h2>
+    <p>A city bridging two continents, rich in history and culture with attractions like the Hagia Sophia and the Grand Bazaar.</p>
+</div>
+
+<a href="info.html?destination=Riodejaneiro" class="destination-link">
+    <div class="destination" data-continent="South America" data-category="Beach" assigned-num="">
+    <img src="../static/img/Rio.jpeg" alt="Rio de Janeiro">
+    <h2>Rio de Janeiro, Brazil</h2>
+    <p>Famous for its stunning beaches like Copacabana and Ipanema, along with landmarks like Christ the Redeemer and Sugarloaf Mountain.</p>
+</div>
+
+<a href="info.html?destination=Amsterdam" class="destination-link">
+    <div class="destination" data-continent="Europe" data-category="City" data-rating="">
+    <img src="../static/img/amsterdam.jpeg" alt="Amsterdam">
+    <h2>Amsterdam, Netherlands</h2>
+    <p>The capital of the Netherlands, known for its picturesque canals, historic architecture, and vibrant cultural scene.</p>
+</div>
+
+<a href="info.html?destination=Bangkok" class="destination-link">
+    <div class="destination" data-continent="Asia" data-category="Scenery" data-rating="">
+    <img src="../static/img/bangkok.jpeg" alt="Bangkok">
+    <h2>Bangkok, Thailand</h2>
+    <p>A bustling city known for its ornate temples, vibrant street life, and delicious street food.</p>
+</div>
+
+<a href="info.html?destination=Cairo" class="destination-link">
+    <div class="destination" data-continent="Africa" data-category="Scenery" data-rating="">
+    <img src="../static/img/cairo.jpeg" alt="Cairo">
+    <h2>Cairo, Egypt</h2>
+    <p>An ancient city with iconic landmarks like the Pyramids of Giza and the Sphinx, showcasing Egypt's rich history.</p>
+</div>
+
+<a href="info.html?destination=Barcelona" class="destination-link">
+    <div class="destination" data-continent="Europe" data-category="Beach" data-rating="">
+    <img src="../static/img/barcelona.jpeg" alt="Barcelona">
+    <h2>Barcelona, Spain</h2>
+    <p>A vibrant city known for its unique architecture, beautiful beaches, and rich cultural heritage.</p>
+</div>
+
+<a href="info.html?destination=Dubai" class="destination-link">
+    <div class="destination" data-continent="Asia" data-category="City" data-rating="">
+    <img src="../static/img/dubai.jpeg" alt="Dubai">
+    <h2>Dubai, UAE</h2>
+    <p>A futuristic city in the desert, famous for its modern architecture, luxury shopping, and attractions like the Burj Khalifa and Palm Jumeirah.</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Function to toggle visibility of filter container and Go button
+    document.getElementById("filterButton").addEventListener("click", function() {
+        var filterContainer = document.getElementById("filterContainer");
+        if (filterContainer.style.display === "none") {
+            filterContainer.style.display = "block";
+        } else {
+            filterContainer.style.display = "none";
+        }
+    });
+
+    // Function to handle 'Go' button click event
+    document.getElementById("goButton").addEventListener("click", function() {
+        // Retrieve filter criteria
+        var category = document.getElementById("category").value;
+        var continent = document.getElementById("continent").value;
+
+        // Filter and display destinations based on criteria
+        var destinations = document.querySelectorAll(".destination");
+        destinations.forEach(function(destination) {
+            var destinationCategory = destination.getAttribute("data-category");
+            var destinationContinent = destination.getAttribute("data-continent");
+            if ((continent === "" || continent === destinationContinent) && 
+                (category === "" || category === destinationCategory)) {
+                destination.style.display = "block";
+            } else {
+                destination.style.display = "none";
+            }
+        });
+    });
+
+    // Function to handle search input
+    document.getElementById("searchInput").addEventListener("input", function() {
+        var searchTerm = this.value.toLowerCase();
+        var destinations = document.querySelectorAll(".destination h2");
+        destinations.forEach(function(destination) {
+            var destinationName = destination.textContent.toLowerCase();
+            var parentDestination = destination.parentElement;
+            if (destinationName.includes(searchTerm)) {
+                parentDestination.style.display = "block";
+            } else {
+                parentDestination.style.display = "none";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
