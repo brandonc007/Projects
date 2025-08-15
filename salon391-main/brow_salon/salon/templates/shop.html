@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- <style>
+    .card-image-top {
+        display: block;
+        width: 100%;
+        max-width: 50px;
+    }
+</style> -->
+
+<div class="container">
+    <div class="row row-col-3 text-center">
+        {% csrf_token %}  <!-- CSRF token for security -->
+        {% for product in products %}
+        <div class="col d-flex justify-content-center">
+            <div class=" card border-dark container-fluid text-center" style="width: 18rem;">
+                <img 
+                    class="card-img-top mx-auto d-block" 
+                    src="{{ product.image.url }}" 
+                    width="100" 
+                    alt="{{ product.name }}"
+                />
+                <h5 class="card-title">{{ product.name }}</h5>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{product.description}}
+                    </p>
+                    <p class="card-text">
+                        ${{product.cost}}
+                    </p>
+                    {% if user.is_authenticated %}
+                    <a type="button" class="btn" href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="clear" style=" clear: both; height: 300px;"></div><!-- Clear dvided to help with spacing-->
+
+{% endblock %}
